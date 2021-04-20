@@ -14,19 +14,19 @@
             Then use the index to print the players place in the collection.
           </p>
           <!-- add the v-for to player-card -->
-          <div class="player-card text-center">
-            <h5>{{}}</h5>
+          <div class="player-card text-center" v-for="(player, index) in state.players">
+            <h5> Player {{index + 1}}</h5>
             <div>
-              <img class="img" src="" />
+              <img class="img" :src="player.photo" />
             </div>
             <div>
-              <span>{{}}</span>
+              <span>{{player.name}}</span>
             </div>
             <div>
-              <span>{{}}</span>
+              <span>{{player.position}}</span>
             </div>
             <div>
-              <span>{{}}</span>
+              <span>{{player.number}}</span>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
             value contained at that key.
           </p>
           <div class="blog" v-for="(value, key) in state.blog" :key="key">
-            <p>{{}}: {{}}</p>
+            <p>{{key}}: {{value}}</p>
           </div>
         </div>
       </div>
@@ -49,54 +49,54 @@
 
 
 <script>
-import { reactive } from "vue";
-export default {
-  name: "looping-exercise",
-  setup() {
-    const state = reactive({
-      blog: {
-        title: "Using v-for in Vue",
-        description: "How to use a v-for directive in Vue.",
-        author: "D$",
-      },
-      players: [
-        {
-          photo: "https://robohash.org/D$",
-          name: "D$",
-          position: "WR",
-          number: 4,
+  import { reactive } from "vue";
+  export default {
+    name: "looping-exercise",
+    setup() {
+      const state = reactive({
+        blog: {
+          title: "Using v-for in Vue",
+          description: "How to use a v-for directive in Vue.",
+          author: "D$",
         },
-        {
-          photo: "https://robohash.org/Mark",
-          name: "Mark",
-          position: "TE",
-          number: 13,
-        },
-        {
-          photo: "https://robohash.org/Jake",
-          name: "Jake",
-          position: "QB",
-          number: 1,
-        },
-      ],
-    });
-    return {
-      state,
-    };
-  },
-};
+        players: [
+          {
+            photo: "https://robohash.org/D$",
+            name: "D$",
+            position: "WR",
+            number: 4,
+          },
+          {
+            photo: "https://robohash.org/Mark",
+            name: "Mark",
+            position: "TE",
+            number: 13,
+          },
+          {
+            photo: "https://robohash.org/Jake",
+            name: "Jake",
+            position: "QB",
+            number: 1,
+          },
+        ],
+      });
+      return {
+        state,
+      };
+    },
+  };
 </script>
 
 
 <style scoped>
-.player-card {
-  border: 1px solid rgba(154, 154, 156, 0.4);
-  background-color: rgba(154, 154, 156, 0.4);
-  margin: 1rem;
-  border-radius: 5px;
-}
+  .player-card {
+    border: 1px solid rgba(154, 154, 156, 0.4);
+    background-color: rgba(154, 154, 156, 0.4);
+    margin: 1rem;
+    border-radius: 5px;
+  }
 
-.img {
-  height: 10rem;
-}
+  .img {
+    height: 10rem;
+  }
 </style>
